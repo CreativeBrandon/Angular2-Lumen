@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Users, UsersService} from "./shared";
-import { Foo, FooService } from "../foo";
+import { Users} from "./shared";
+import { UsersService} from "./shared/users.service";
+//import { Foo, FooService } from "../foo";
 
 @Component({
   selector: 'users-list',
-  template: '<p>This is Users Component</p>'
+  moduleId: module.id,
+  templateUrl: './users.component.html',
+  providers: [UsersService]
 })
 
 export class UsersComponent implements OnInit {
@@ -14,7 +17,6 @@ export class UsersComponent implements OnInit {
     constructor(private usersService: UsersService) {}
 
     ngOnInit() {
-        console.log('worked ');
         this.usersService.getUsers()
         .then(users => this.users = users);
     }
