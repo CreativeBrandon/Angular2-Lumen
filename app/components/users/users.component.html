@@ -1,4 +1,4 @@
 <h3>Users list component</h3>
-<ul>
+<ul *ngIf="users">
     <li *ngFor="let user of users">{{user.username}}</li>
 </ul>
