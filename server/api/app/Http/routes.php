@@ -15,7 +15,7 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
-$app->group(['prefix' => 'users', 'namespace' => 'App\Http\Controllers'], function () use ($app){
+$app->group(['prefix' => 'users', 'middleware' => ['cors'], 'namespace' => 'App\Http\Controllers'], function () use ($app){
     $app->get('/mongo', 'MongoUsersController@getUsers');
     $app->get('', 'UsersController@getUsers');
 });
