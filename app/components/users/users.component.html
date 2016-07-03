@@ -1,4 +1,22 @@
 <h3>Users list component</h3>
+
+<h4>Local Users</h4>
 <ul *ngIf="users">
     <li *ngFor="let user of users">{{user.username}}</li>
+</ul>
+
+<h4>Sample Users</h4>
+<ul *ngIf="usersSample">
+    <li *ngFor="let user of usersSample">
+        <div><strong>Username:</strong> {{user.username}}</div>
+        <div><strong>Email:</strong> {{user.email}}</div>
+    </li>
+</ul>
+
+<h4>Mongo Users</h4>
+<ul *ngIf="mongoUsers">
+    <li *ngFor="let user of mongoUsers">
+        <div><strong>Username:</strong> {{user.username}}</div>
+        <div><strong>Location:</strong> {{user.location}}</div>
+    </li>
 </ul>
