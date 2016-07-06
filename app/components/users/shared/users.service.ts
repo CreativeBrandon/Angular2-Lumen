@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
+import { Config } from '../../../shared/config';
 import { USERS } from './mock-users';
-import {Observable} from 'rxjs/observable';
+import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/toPromise'; //rxjs/Rx
 
 let api = {
-    server: 'http://localhost:8000/',
-    test: 'http://jsonplaceholder.typicode.com/'
+    server: Config.localhost,
+    test: Config.api
 }
 
 @Injectable()
