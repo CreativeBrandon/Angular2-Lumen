@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import { Config } from '../../../shared/config';
+import { Config, Logger } from '../../../shared/index';
 import { USERS } from './mock-users';
 import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/toPromise'; //rxjs/Rx
@@ -14,7 +14,7 @@ let api = {
 @Injectable()
 export class UsersService {
 
-    constructor(private http: Http){}
+    constructor(private http: Http, private logger: Logger){}
 
     public getUsers(){
         return Promise.resolve(USERS);
@@ -34,8 +34,9 @@ export class UsersService {
             .catch(this.handleError);
     }
 
-    private handleError(error: any){
-        console.error('an error occured', error);
-        return Promise.reject(error.message || error);
+    public handleError(error: any){
+        console.log('Error: ', error.message || error.statusText);
+        //this.logger.log(error.message || error.statusText);
+        //return Promise.reject(error.message || error);
     }
 }

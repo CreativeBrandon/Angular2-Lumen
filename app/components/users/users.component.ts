@@ -2,27 +2,32 @@ import { Component, OnInit } from '@angular/core';
 
 import { Users} from "./shared";
 import { UsersService} from "./shared/users.service";
+import { Logger } from '../../shared/index'
 //import { Foo, FooService } from "../foo";
 
 @Component({
   selector: 'users-list',
   moduleId: module.id,
   templateUrl: './users.component.html',
-  providers: [UsersService]
+  providers: [UsersService, Logger]
 })
 
 export class UsersComponent implements OnInit {
     users:Users[] = [];
-    usersSample: Object;
-    mongoUsers: Object;
+    usersSample: Object[];
+    mongoUsers: Object[];
     error: any;
 
-    constructor(private usersService: UsersService) {}
+    constructor(private usersService: UsersService, private logger: Logger) {}
 
     ngOnInit() {
         this.getLocalUsers();
         this.getSampleUsers();
         this.getMongoUsers();
+    }
+
+    private onSelect(user: Object){
+        console.log('set selected user', user);
     }
 
     private getLocalUsers(){

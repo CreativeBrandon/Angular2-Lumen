@@ -9,7 +9,7 @@ import {HTTP_PROVIDERS} from '@angular/http';
 
 import {provide, ExceptionHandler} from '@angular/core';
 import {AppComponent} from './app.component';
-import {CustomExceptionHandler} from './shared/index';
+import {CustomExceptionHandler, Logger} from './shared/index';
 
 bootstrap(
     AppComponent,

@@ -18,7 +18,8 @@
 <h4>Mongo Users</h4>
 <span *ngIf="!mongoUsers">loading ...</span>
 <ul *ngIf="mongoUsers">
-    <li *ngFor="let user of mongoUsers">
+    <li *ngFor="let user of mongoUsers"
+        (click)="onSelect(user)">
         <div><strong>Username:</strong> {{user.username}}</div>
         <div><strong>Location:</strong> {{user.location}}</div>
     </li>

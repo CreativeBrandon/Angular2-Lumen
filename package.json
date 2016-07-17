@@ -15,7 +15,7 @@
     "tsc:w": "tsc -w",
     "typings": "typings",
     "webdriver:update": "webdriver-manager update",
-    "fullStack": "npm run database:mysql && npm run database:mongo && npm run server && npm run openBrowser && npm run start",
+    "fullstack": "npm run database:mysql && npm run database:mongo && npm run server && npm run openBrowser && npm run start",
     "server": "start cmd /K php -S localhost:8000 -t server/api/public",
     "database:mysql": "start cmd /K sudo net start mysql",
     "database:mongo": "start cmd /K mongod --dbpath /users/cre8t/sites/mongodb-data",
