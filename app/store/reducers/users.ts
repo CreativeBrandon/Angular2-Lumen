@@ -1,5 +1,5 @@
 /**
- *  Peoples reducer
+ *  Users reducer
  */
 import { ActionReducer, Action} from '@ngrx/store';
 
@@ -20,7 +20,6 @@ export const usersReducer: ActionReducer<any> = (state: Object[] = [], action: A
         case UPDATE_USER:
             return state;
         case SEED:
-            console.log('store seed');
             return [
                 ...state,
                 action.payload
