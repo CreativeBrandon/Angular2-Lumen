@@ -3,12 +3,18 @@
  */
 import { ActionReducer, Action} from '@ngrx/store';
 
-export const ADD_USER = 'ADD_USER';
-export const REMOVE_USER = 'REMOVE_USER';
-export const UPDATE_USER = 'UPDATE_USER';
-export const SEED = 'SEED';
+import {
+    ADD_USER,
+    REMOVE_USER,
+    UPDATE_USER,
+    SEED
+} from '../../constants';
 
 export const usersReducer: ActionReducer<any> = (state: Object[] = [], action: Action):Object => {
+    if(!action.type || !action.payload){
+        return state;
+    }
+
     switch (action.type){
         case ADD_USER:
             return [

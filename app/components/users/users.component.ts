@@ -5,6 +5,10 @@ import { UsersService} from "./shared/users.service";
 import { Logger } from '../../shared/index'
 //import { Foo, FooService } from "../foo";
 
+import { Observable } from 'rxjs/observable';
+import { Store } from '@ngrx/store';
+import { ADD_USER, REMOVE_USER, UPDATE_USER, SEED} from '../../constants';
+
 @Component({
   selector: 'users-list',
   moduleId: module.id,
@@ -17,13 +21,29 @@ export class UsersComponent implements OnInit {
     usersSample: Object[];
     mongoUsers: Object[];
     error: any;
+    //public accounts: Observable<any>
+    public accounts:any;
 
-    constructor(private usersService: UsersService, private logger: Logger) {}
+    constructor(private _store: Store<any>, private usersService: UsersService, private logger: Logger) {
+        //this.accounts = _store.select('users');
+        _store.select('users')
+                .subscribe(users => {
+                    this.accounts = users
+                });
+    }
 
     ngOnInit() {
         this.getLocalUsers();
         this.getSampleUsers();
         this.getMongoUsers();
+    }
+
+    private seed(data:Object){
+        this._store.dispatch({ type: SEED, payload: data });
+    }
+
+    private checkStore(){
+        console.log('store accounts: ', this.accounts);
     }
 
     private onSelect(user: Object){
@@ -37,7 +57,11 @@ export class UsersComponent implements OnInit {
 
     private getSampleUsers(){
         this.usersService.getSampleUsers()
-        .then(usersSample => this.usersSample = usersSample)
+        .then(usersSample => {
+            this.usersSample = usersSample;
+            this.seed(usersSample);
+            this.checkStore();
+        })
         .catch(error => this.error = error);
     }
 
