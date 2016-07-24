@@ -7,7 +7,7 @@ import { Logger } from '../../shared/index'
 
 import { Observable } from 'rxjs/observable';
 import { Store } from '@ngrx/store';
-import { ADD_USER, REMOVE_USER, UPDATE_USER, SEED} from '../../constants';
+import { ADD_USER, REMOVE_USER, UPDATE_USER, SEED} from '../../actions';
 
 @Component({
   selector: 'users-list',
@@ -20,6 +20,7 @@ export class UsersComponent implements OnInit {
     users:Users[] = [];
     usersSample: Object[];
     mongoUsers: Object[];
+    usersPhotos: Object[];
     error: any;
     //public accounts: Observable<any>
     public accounts:any;
@@ -36,18 +37,28 @@ export class UsersComponent implements OnInit {
         this.getLocalUsers();
         this.getSampleUsers();
         this.getMongoUsers();
+        //this.getPhotos();
     }
 
     private seed(data:Object){
         this._store.dispatch({ type: SEED, payload: data });
     }
 
-    private checkStore(){
-        console.log('store accounts: ', this.accounts);
+    private getPhotos(){
+        this.usersService.getPhotos()
+            .then(photos => {
+                this.usersPhotos = photos;
+                this._store.dispatch({ type: SEED, payload: photos});
+            })
+            .catch(error => this.error = error);
     }
 
-    private onSelect(user: Object){
-        console.log('set selected user', user);
+    private onAddUser(user: Object){
+        this._store.dispatch({ type: ADD_USER, payload: user});
+    }
+
+    private onRemoveUser(user: Object){
+        this._store.dispatch({ type: REMOVE_USER, payload: user});
     }
 
     private getLocalUsers(){
@@ -59,8 +70,6 @@ export class UsersComponent implements OnInit {
         this.usersService.getSampleUsers()
         .then(usersSample => {
             this.usersSample = usersSample;
-            this.seed(usersSample);
-            this.checkStore();
         })
         .catch(error => this.error = error);
     }

@@ -1,4 +1,4 @@
-<h3>Users list component</h3>
+<h3>Users List Component</h3>
 
 <h4>Local Users</h4>
 <span *ngIf="!users">loading ...</span>
@@ -10,8 +10,9 @@
 <span *ngIf="!usersSample">loading ...</span>
 <ul *ngIf="usersSample">
     <li *ngFor="let user of usersSample">
-        <div><strong>Username:</strong> {{user.username}}</div>
-        <div><strong>Email:</strong> {{user.email}}</div>
+        <div>{{user.name}}: {{user.email}} &nbsp; &nbsp;
+            <button (click)="onAddUser(user)">Add</button> &nbsp; <button (click)="onRemoveUser(user)">Remove</button>
+        </div>
     </li>
 </ul>
 
@@ -19,7 +20,7 @@
 <span *ngIf="!mongoUsers">loading ...</span>
 <ul *ngIf="mongoUsers">
     <li *ngFor="let user of mongoUsers"
-        (click)="onSelect(user)">
+        (click)="onAddUser(user)">
         <div><strong>Username:</strong> {{user.username}}</div>
         <div><strong>Location:</strong> {{user.location}}</div>
     </li>

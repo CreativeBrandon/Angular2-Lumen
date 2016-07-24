@@ -8,7 +8,7 @@ import {
     REMOVE_USER,
     UPDATE_USER,
     SEED
-} from '../../constants';
+} from '../../actions';
 
 export const usersReducer: ActionReducer<any> = (state: Object[] = [], action: Action):Object => {
     if(!action.type || !action.payload){
@@ -22,7 +22,7 @@ export const usersReducer: ActionReducer<any> = (state: Object[] = [], action: A
                 action.payload
             ];
         case REMOVE_USER:
-            return state;
+            return state.filter(user => user !== action.payload);
         case UPDATE_USER:
             return state;
         case SEED:

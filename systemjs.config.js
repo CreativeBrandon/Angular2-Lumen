@@ -20,7 +20,9 @@
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
     '@ngrx/core':                 { main: 'index.js', format: 'cjs'},
-    '@ngrx/store':                 { main: 'index.js', format: 'cjs'},
+    '@ngrx/store':                { main: 'index.js', format: 'cjs'},
+    '@ngrx/store-devtools':       { main: 'index.js', format: 'cjs'},
+    '@ngrx/store-log-monitor':    { main: 'index.js', format: 'cjs'},
   };
 
   var ngPackageNames = [

@@ -38,6 +38,8 @@
     "@angular/upgrade": "2.0.0-rc.4",
     "@ngrx/core": "^1.0.1",
     "@ngrx/store": "^2.0.1",
+    "@ngrx/store-devtools": "^2.0.0-beta.1",
+    "@ngrx/store-log-monitor": "^2.0.0-beta.1",
     "angular2-in-memory-web-api": "0.0.14",
     "bootstrap": "^3.3.6",
     "core-js": "^2.4.0",

@@ -33,6 +33,13 @@ export class UsersService {
             .catch(this.handleError);
     }
 
+    public getPhotos(){
+        return this.http.get(api.test + 'photos')
+            .toPromise()
+            .then(response => response.json())
+            .catch(this.handleError);
+    }
+
     public handleError(error: any){
         console.log('Error: ', error.message || error.statusText);
         //this.logger.log(error.message || error.statusText);
