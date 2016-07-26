@@ -1,14 +1,18 @@
+/**
+* Root Component
+*/
 import { Component } from '@angular/core';
-
+import { provideRouter, ROUTER_DIRECTIVES } from '@angular/router';
 import { StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
-import { UsersComponent } from './components/users/users.component';
 
 @Component({
     selector: 'my-app',
-    styles: [],
-    directives: [ StoreLogMonitorComponent, UsersComponent],
-    template: `<h1>My First Angular 2 App</h1><users-list></users-list>
-                <ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>
-                `
+    directives: [ROUTER_DIRECTIVES, StoreLogMonitorComponent],
+    template: `
+        <a [routerLink]="['/']">Home</a>
+        <a [routerLink]="['/users']">Users</a>
+        <router-outlet></router-outlet>
+        <ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>
+    `
 })
 export class AppComponent { }

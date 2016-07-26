@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 
 import { Users} from "./shared";
 import { UsersService} from "./shared/users.service";
-import { Logger } from '../../shared/index'
-//import { Foo, FooService } from "../foo";
+import { Logger } from '../../shared/index';
 
 import { Observable } from 'rxjs/observable';
 import { Store } from '@ngrx/store';
 import { ADD_USER, REMOVE_USER, UPDATE_USER, SEED} from '../../actions';
 
 @Component({
-  selector: 'users-list',
-  moduleId: module.id,
-  templateUrl: './users.component.html',
-  providers: [UsersService, Logger]
+    moduleId: module.id,
+    selector: 'users-list',
+    templateUrl: './users.component.html',
+    providers: [UsersService, Logger]
 })
 
 export class UsersComponent implements OnInit {

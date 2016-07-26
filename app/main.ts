@@ -3,23 +3,27 @@ import { XHRBackend } from '@angular/http';
 import { InMemoryBackendService, SEED_DATA } from 'angular2-in-memory-web-api';
 
 // bootstraping components
-import {bootstrap}    from '@angular/platform-browser-dynamic';
-import {HTTP_PROVIDERS} from '@angular/http';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { Component, provide, ExceptionHandler } from '@angular/core';
+import { provideRouter, ROUTER_DIRECTIVES } from '@angular/router';
+import { HTTP_PROVIDERS } from '@angular/http';
 
 // REDUX
 import { provideStore } from '@ngrx/store';
 import { instrumentStore } from '@ngrx/store-devtools';
-import { useLogMonitor } from '@ngrx/store-log-monitor';
-import { usersReducer } from './store/reducers/users.reducer';
+import { useLogMonitor, StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
+import { usersReducer } from './store/index';
+
 // Components
-import {provide, ExceptionHandler} from '@angular/core';
-import {AppComponent} from './app.component';
-import {CustomExceptionHandler, Logger} from './shared/index';
+import { AppComponent } from './app.component';
+import { appRouterProviders } from './app.routes';
+import { CustomExceptionHandler, Logger } from './shared/index';
 
 bootstrap(
     AppComponent,
     [
         HTTP_PROVIDERS,
+        appRouterProviders,
         provideStore({ users: usersReducer }),
         instrumentStore({
             monitor: useLogMonitor({
