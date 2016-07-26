@@ -7,12 +7,13 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { Component, provide, ExceptionHandler } from '@angular/core';
 import { provideRouter, ROUTER_DIRECTIVES } from '@angular/router';
 import { HTTP_PROVIDERS } from '@angular/http';
+import { NOTIFY_PROVIDERS, NOTIFY_GLOBAL_OPTIONS } from '@ngrx/notify';
 
 // REDUX
 import { provideStore } from '@ngrx/store';
 import { instrumentStore } from '@ngrx/store-devtools';
 import { useLogMonitor, StoreLogMonitorComponent } from '@ngrx/store-log-monitor';
-import { usersReducer } from './store/index';
+import { usersReducer, notificationReducer } from './store/index';
 
 // Components
 import { AppComponent } from './app.component';
@@ -23,8 +24,10 @@ bootstrap(
     AppComponent,
     [
         HTTP_PROVIDERS,
+        NOTIFY_PROVIDERS,
+        { provide: NOTIFY_GLOBAL_OPTIONS, multi: true, useValue: { /* global options here */ } },
         appRouterProviders,
-        provideStore({ users: usersReducer }),
+        provideStore({ users: usersReducer, notifications: notificationReducer }),
         instrumentStore({
             monitor: useLogMonitor({
                 visible: true,

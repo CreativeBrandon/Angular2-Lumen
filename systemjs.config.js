@@ -23,6 +23,7 @@
     '@ngrx/store':                { main: 'index.js', format: 'cjs'},
     '@ngrx/store-devtools':       { main: 'index.js', format: 'cjs'},
     '@ngrx/store-log-monitor':    { main: 'index.js', format: 'cjs'},
+    '@ngrx/notify':               { main: 'index.js', format: 'cjs'},
   };
 
   var ngPackageNames = [

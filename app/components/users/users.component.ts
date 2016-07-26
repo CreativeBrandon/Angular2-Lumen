@@ -6,7 +6,7 @@ import { Logger } from '../../shared/index';
 
 import { Observable } from 'rxjs/observable';
 import { Store } from '@ngrx/store';
-import { ADD_USER, REMOVE_USER, UPDATE_USER, SEED} from '../../actions';
+import { ADD_USER, REMOVE_USER, UPDATE_USER, SEED, ADD_NOTIFICATION} from '../../actions';
 
 @Component({
     moduleId: module.id,
@@ -52,8 +52,9 @@ export class UsersComponent implements OnInit {
             .catch(error => this.error = error);
     }
 
-    private onAddUser(user: Object){
+    private onAddUser(user: any){
         this._store.dispatch({ type: ADD_USER, payload: user});
+        //this.logger.log('added user: '+ user.username);
     }
 
     private onRemoveUser(user: Object){
