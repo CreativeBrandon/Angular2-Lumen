@@ -1,2 +1,2 @@
-export * from './header/header.component';
-export * from './users/users.component';
+export * from './header/index';
+export * from './users/index';

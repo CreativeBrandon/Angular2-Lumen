@@ -1,2 +1,2 @@
-export * from './reducers/users.reducer';
-export * from './notifications/notification.reducer';
+export * from './users/index';
+export * from './notifications/index';
