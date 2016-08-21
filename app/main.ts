@@ -36,4 +36,5 @@ bootstrap(
         })
         //{ provide: XHRBackend, useClass: InMemoryBackendService }, // in-mem server
         //provide(ExceptionHandler, {useClass: CustomExceptionHandler})
-    ]);
+    ])
+    .catch(error => console.error(error));
